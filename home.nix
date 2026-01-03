@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./modules/neovim.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "nixmox";
@@ -10,7 +13,6 @@
   # environment.
   home.packages = [
     pkgs.hello
-    pkgs.neovim
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
