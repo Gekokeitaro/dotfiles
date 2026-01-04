@@ -12,16 +12,14 @@
   outputs =
     { nixpkgs, home-manager, ... } @inputs:
     let
-      lib = inputs.nixpkgs.lib;
-
-      hosts = builtins.filter (x: x != null) (
-        lib.mapAttrsToList (name: value: if (value == "directory") then name else null) (
-	  builtins.readDir ./hosts
-	)
-      );
+      lib = nixpkgs.lib;
+      
+      # From LibrePhoenix repo. Get every host directory to list
+      hosts = import ./lib/hosts.nix {inherit lib; };
     in
     {
       nixosConfigurations = builtins.listToAttrs (
+        # For every host in hosts return...
         map (host: {
 	  name = host;
 	  value = lib.nixosSystem {
