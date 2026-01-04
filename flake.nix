@@ -15,7 +15,7 @@
       lib = nixpkgs.lib;
       
       # From LibrePhoenix repo. Get every host directory to list
-      hosts = import ./lib/hosts.nix {inherit lib; };
+      hosts = import ./lib/getHosts.nix {inherit lib; };
     in
     {
       nixosConfigurations = builtins.listToAttrs (
