@@ -10,24 +10,33 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
-    {
-      nixosConfigurations = {
-        nixmox = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.nixmox = ./home.nix;
+    { nixpkgs, home-manager, ... } @inputs:
+    let
+      lib = inputs.nixpkgs.lib;
 
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
-            }
-          ];
-        };
-      };
+      hosts = builtins.filter (x: x != null) (
+        lib.mapAttrsToList (name: value: if (value == "directory") then name else null) (
+	  builtins.readDir ./hosts
+	)
+      );
+    in
+    {
+      nixosConfigurations = builtins.listToAttrs (
+        map (host: {
+	  name = host;
+	  value = lib.nixosSystem {
+            system = "x86_64-linux";
+	    modules = [
+	      (./hosts + "/${host}/configuration.nix")
+	      home-manager.nixosModules.home-manager
+	      {
+	        home-manager.useGlobalPkgs = true;
+	        home-manager.useUserPackages = true;
+	        home-manager.users.nixmox = (./hosts + "/${host}/home.nix");
+   	      }
+	    ];  
+	  };
+	}) hosts
+      );
     };
 }
