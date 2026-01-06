@@ -30,7 +30,7 @@
 	      {
 	        home-manager.useGlobalPkgs = true;
 	        home-manager.useUserPackages = true;
-	        home-manager.users.nixmox = (./hosts + "/${host}/home.nix");
+	        home-manager.users."${host}"= (./hosts + "/${host}/home.nix");
    	      }
 	    ];  
 	  };
