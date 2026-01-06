@@ -39,6 +39,7 @@
     vim
     wget
     git
+    magic-wormhole
   ];
 
   # Configuración SSH
