@@ -2,7 +2,7 @@
 
 {
   imports = [ 
-    ../../user-modules/ghostty.nix
+    ../../modules/ghostty
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
