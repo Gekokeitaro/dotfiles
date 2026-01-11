@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../root-modules/niri
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -22,7 +23,7 @@
     xkb.layout = "es"; # Layout del teclado en español para UI
     autoRepeatDelay = 200;
     autoRepeatInterval = 35;
-    windowManager.qtile.enable = true;
+	    #windowManager.qtile.enable = true;
   };
 
   services.displayManager.ly.enable = true;
