@@ -2,8 +2,8 @@
 
 {
   imports = [ 
-    #./../modules/alacritty
-    ../../modules/foot
+    ../../modules/alacritty
+    #./../modules/foot
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
