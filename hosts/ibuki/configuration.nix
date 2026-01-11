@@ -55,6 +55,11 @@
     };
   };
 
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 15d";
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "25.11"; # Did you read the comment?
