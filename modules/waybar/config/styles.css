@@ -1,4 +1,57 @@
-* {
-	border: none;
-	border-radius: 0;
+/* Pico-8 Colors */
+
+@define-color black #000000;
+@define-color dark-blue #1D2B53;
+@define-color purple #1D2B53;
+@define-color dark-green #008751;
+@define-color brown #AB5236;
+@define-color dark-grey #5F574F;
+@define-color grey #C2C3C7;
+@define-color white #FFF1E8;
+@define-color red #FF004D;
+@define-color orange #FFA300;
+@define-color yellow #FFEC27;
+@define-color light-green #00E436;
+@define-color light-blue #29ADFF;
+@define-color lavender #83769C;
+@define-color pink #FF77A8;
+@define-color peach #FFCCAA;
+
+/* Styles */
+
+* { 
+	padding: 0;
+	margin: 0;	
+}
+
+window#waybar {
+	background: transparent;
+	min-height: .25rem;
+	font-size: 1rem;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+	background: @black;
+	border: .15rem solid @red;
+	border-radius: 2rem;
+	padding: .125rem .25rem;
+	margin: .125rem;
+}
+
+#battery {
+	background-color: @light-green;
+}
+
+#cpu {
+	background-color: @light-blue;
+}
+
+#memory {
+	background-color: @orange;
+}
+
+#disk {
+	background-color: @brown;
 }

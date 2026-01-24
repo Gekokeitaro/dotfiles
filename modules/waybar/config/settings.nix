@@ -3,11 +3,8 @@
 {
   programs.waybar.settings = {
     mainBar = {
-      layer = "top";
+      mode = "dock";
       position = "top";
-      height = 30;
-      spacing = 4;
-      margin = "1px";
       output = [ "eDP-1" ];
 
       modules-left = [
@@ -28,6 +25,16 @@
       "clock" = {
         format = "{:%H:%M}";
         timezone = "Europe/Madrid";
+      };
+
+      "niri/workspaces" = {
+        format = "{name}";
+        all-outputs = false;
+        persistent-workspaces = {
+          "1" = [];
+          "2" = [];
+          "3" = [];
+        };
       };
     };
   };
