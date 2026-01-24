@@ -4,7 +4,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../root-modules/podman
+      #./../root-modules/podman
+      #./../containers/ollama-oci.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
