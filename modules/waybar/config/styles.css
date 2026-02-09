@@ -22,6 +22,7 @@
 * { 
 	padding: 0;
 	margin: 0;	
+	color: @white;
 }
 
 window#waybar {
@@ -33,7 +34,7 @@ window#waybar {
 .modules-left,
 .modules-center,
 .modules-right {
-	background: @black;
+	background: transparent;
 	border: .15rem solid @red;
 	border-radius: 2rem;
 	padding: .125rem .25rem;
@@ -41,17 +42,57 @@ window#waybar {
 }
 
 #battery {
-	background-color: @light-green;
+	color: @light-green;
+	background-image: linear-gradient(to right, @light-green, transparent);
 }
 
 #cpu {
-	background-color: @light-blue;
+	color: @light-blue;
+	background-image: linear-gradient(to right, @light-blue, transparent);
 }
 
 #memory {
-	background-color: @orange;
+	color: @orange;
+	background-image: linear-gradient(to right, @orange, transparent);
 }
 
 #disk {
-	background-color: @brown;
+	/*background-color: @brown;*/
+	background-image: linear-gradient(to right, @brown, transparent);
+}
+
+#cpu.10, #memory.10, #battery.10 {
+	background-image: linear-gradient(to right, currentColor 10%, transparent);
+}
+
+#cpu.17, #memory.17, #battery.17  {
+	background-image: linear-gradient(to right, currentColor 17%, transparent);
+}
+
+#cpu.25, #memory.25, #battery.25  {
+	background-image: linear-gradient(to right, currentColor 25%, transparent);
+}
+
+#cpu.37, #memory.37, #battery.37  {
+	background-image: linear-gradient(to right, currentColor 37%, transparent);
+}
+
+#cpu.15, #memory.15 {
+	background-image: linear-gradient(to right, currentColor 15%, transparent);
+}
+
+#cpu.15, #memory.15 {
+	background-image: linear-gradient(to right, currentColor 15%, transparent);
+}
+
+#cpu.15, #memory.15 {
+	background-image: linear-gradient(to right, currentColor 15%, transparent);
+}
+
+#battery, #cpu, #memory, #disk {
+	min-width: 6rem;
+	margin: 0 .5rem 0 .5rem;
+	background-position: 100% 85%;
+	background-size: 55% 0.5rem;
+	background-repeat: no-repeat; 
 }
