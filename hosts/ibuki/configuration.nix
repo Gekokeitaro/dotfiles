@@ -41,6 +41,11 @@
     wget
     git
     magic-wormhole
+    neofetch
+  ];
+  
+  fonts.packages = with pkgs; [
+    cozette
   ];
 
   # Configuración SSH
