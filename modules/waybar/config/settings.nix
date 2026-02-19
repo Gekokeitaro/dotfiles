@@ -20,7 +20,7 @@
       ];
 
       "clock" = {
-        format = "{:%H:%M}";
+        format = "<span size='large'>{:%H:%M}</span>";
         timezone = "Europe/Madrid";
         interval = 60;
       };
@@ -136,11 +136,6 @@
       "temperature" = {
         format = "<span size='large'>TMP {temperatureC}º</span>";
         interval = 15;
-      };
-
-      "clock" = {
-        format = "<span size='large'></span>";
-        interval = 60;
       };
     };
   };
