@@ -41,11 +41,6 @@
     wget
     git
     magic-wormhole
-    neofetch
-  ];
-  
-  fonts.packages = with pkgs; [
-    cozette
   ];
 
   # Configuración SSH
@@ -69,6 +64,4 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
-

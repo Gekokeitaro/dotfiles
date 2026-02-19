@@ -1,9 +1,8 @@
 {pkgs, lib, config, ...}:
 
 {
-  programs.waybar.enable = true;
-
   imports = [
-    ./config
+    ./settings.nix
+    ./style.nix
   ];
 }
