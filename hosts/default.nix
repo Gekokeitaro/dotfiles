@@ -1,7 +1,7 @@
 { inputs, ... }:
 let
   lib = inputs.nixpkgs.lib;
-  hostsDirs = import ../utils/getDirs.nix { inherit lib; path=../hosts; };
+  hostsDirs = import ../utils/getDirs.nix { inherit lib; path=./.; };
 in
 builtins.listToAttrs (
   map ( host: {
