@@ -63,7 +63,7 @@
 
   nix.gc = {
     automatic = true;
-    options = "--delete-older-than 15d";
+    options = "--delete-older-than 5d";
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
