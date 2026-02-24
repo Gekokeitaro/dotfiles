@@ -1,9 +1,16 @@
-{pkgs, lib, config, ...}:
+{ config, lib, pkgs, ...}:
 
-{
-  programs.waybar.enable = true;
+with lib;
 
-  imports = [
-    ./config
-  ];
+let
+  cfg = config.homeModules.waybar;
+in {
+  imports = [ ./config ];
+  options.homeModules.waybar = {
+    enable = mkEnableOption "enable waybar module";
+  };
+  
+  config = mkIf cfg.enable {
+    programs.waybar.enable = true;
+  };
 }
