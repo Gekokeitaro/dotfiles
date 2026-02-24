@@ -11,6 +11,6 @@ in {
 
   config = mkIf cfg.enable {
     programs.opencode.enable = true;
-    #homeModules.opencode.settings.default_agent = "plan";
+    programs.opencode.settings.default_agent = "plan";
   };
 }
