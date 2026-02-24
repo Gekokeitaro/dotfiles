@@ -4,9 +4,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../root-modules/niri
+      ../../root-modules
     ];
 
+  rootModules.niri.enable = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

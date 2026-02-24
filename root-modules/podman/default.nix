@@ -1,25 +1,35 @@
-{pkgs, lib, config, ...}:
+{ config, lib, pkgs, ... }:
 
-{
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
-    };
+with lib;
+
+let
+  cfg = config.rootModules.podman;
+in {
+  options.rootModules.podman = {
+    enable = mkEnableOption "enable podman module";
   };
+  
+  config = mkIf cfg.enable {
+    virtualisation = {
+      containers.enable = true;
+      podman = {
+        enable = true;
+        dockerCompat = true;
+        defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+      };
+    };
 
-  # TODO: Modularize
-  users.users.nixmox = { # replace `<USERNAME>` with the actual username
-    extraGroups = [
-      "podman"
+    # TODO: Modularize
+    users.users.nixmox = { # replace `<USERNAME>` with the actual username
+      extraGroups = [
+        "podman"
+      ];
+    };
+
+    environment.systemPackages = with pkgs; [
+      dive
+      podman-tui
+      podman-compose
     ];
   };
-
-  environment.systemPackages = with pkgs; [
-    dive
-    podman-tui
-    podman-compose
-  ];
 }
