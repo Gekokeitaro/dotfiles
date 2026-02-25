@@ -8,6 +8,7 @@ builtins.listToAttrs (
     name = host;
     value = lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
       modules = [
         (./. + "/${host}/configuration.nix")
         inputs.home-manager.nixosModules.home-manager {
