@@ -20,6 +20,7 @@ in {
       nil
       nixpkgs-fmt
 
+      marksman
       nodejs
     ];
 
@@ -30,8 +31,14 @@ in {
 
       plugins = with pkgs.vimPlugins; [
         telescope-nvim
-        nvim-treesitter
+        (nvim-treesitter.withPlugins (p: [ p.markdown p.nix]))
         nvim-lspconfig
+	nvim-lint
+        conform-nvim
+	lualine-nvim
+	noice-nvim
+	plenary-nvim
+	outline-nvim
       ];
     };
   };
