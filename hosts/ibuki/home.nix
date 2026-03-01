@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [ 
     ../../modules
     #./../modules/foot
+    inputs.nvf.homeManagerModules.default
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -22,7 +23,8 @@
   homeModules.alacritty.enable = true;
   homeModules.waybar.enable = true;
   homeModules.lazygit.enable = true;
-  homeModules.neovim.enable = true;
+  #homeModules.neovim.enable = true;
+  homeModules.nvf.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
