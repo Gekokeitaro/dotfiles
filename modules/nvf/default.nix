@@ -3,7 +3,7 @@
 with lib;
 
 let
-  cfg = config.homeModules.neovim;
+  cfg = config.homeModules.nvf;
 in {
   options.homeModules.nvf = {
     enable = mkEnableOption "enable nvf module";
