@@ -1,0 +1,91 @@
+/* Pico-8 Colors */
+
+@define-color black #000000;
+@define-color dark-blue #1D2B53;
+@define-color purple #1D2B53;
+@define-color dark-green #008751;
+@define-color brown #AB5236;
+@define-color dark-grey #5F574F;
+@define-color grey #C2C3C7;
+@define-color white #FFF1E8;
+@define-color red #FF004D;
+@define-color orange #FFA300;
+@define-color yellow #FFEC27;
+@define-color light-green #00E436;
+@define-color light-blue #29ADFF;
+@define-color lavender #83769C;
+@define-color pink #FF77A8;
+@define-color peach #FFCCAA;
+
+/* Styles */
+
+* { 
+	font-family: Cozette;
+	padding: 0;
+	margin: 0;	
+	color: @white;
+}
+
+window#waybar {
+	background: transparent;
+	min-height: .25rem;
+	font-size: 1rem;
+}
+
+.modules-left,
+.modules-right {
+	background: transparent;
+	border: .15rem solid @red;
+	border-radius: 2rem;
+	padding: .125rem .25rem;
+	margin: .125rem;
+}
+
+#battery {
+	color: @light-green;
+	background-image: linear-gradient(to right, @light-green, transparent);
+}
+
+#cpu {
+	color: @light-blue;
+	background-image: linear-gradient(to right, @light-blue, transparent);
+}
+
+#memory {
+	color: @orange;
+	background-image: linear-gradient(to right, @orange, transparent);
+}
+
+#disk {
+	color: @brown;
+	background-image: linear-gradient(to right, @brown, transparent);
+}
+
+#cpu.0, #memory.0, #battery.0, #disk.0 { background-image: linear-gradient(to right, currentColor 0%, transparent 10%); }
+#cpu.5, #memory.5, #battery.5, #disk.5 { background-image: linear-gradient(to right, currentColor 5%, transparent 15%); }
+#cpu.10, #memory.10, #battery.10, #disk.10 { background-image: linear-gradient(to right, currentColor 10%, transparent 20%); }
+#cpu.15, #memory.15, #battery.15, #disk.15 { background-image: linear-gradient(to right, currentColor 15%, transparent 25%); }
+#cpu.20, #memory.20, #battery.20, #disk.20 { background-image: linear-gradient(to right, currentColor 20%, transparent 30%); }
+#cpu.25, #memory.25, #battery.25, #disk.25 { background-image: linear-gradient(to right, currentColor 25%, transparent 35%); }
+#cpu.30, #memory.30, #battery.30, #disk.30 { background-image: linear-gradient(to right, currentColor 30%, transparent 40%); }
+#cpu.35, #memory.35, #battery.35, #disk.35 { background-image: linear-gradient(to right, currentColor 35%, transparent 45%); }
+#cpu.40, #memory.40, #battery.40, #disk.40 { background-image: linear-gradient(to right, currentColor 40%, transparent 50%); }
+#cpu.45, #memory.45, #battery.45, #disk.45 { background-image: linear-gradient(to right, currentColor 45%, transparent 55%); }
+#cpu.50, #memory.50, #battery.50, #disk.50 { background-image: linear-gradient(to right, currentColor 50%, transparent 60%); }
+#cpu.55, #memory.55, #battery.55, #disk.55 { background-image: linear-gradient(to right, currentColor 55%, transparent 65%); }
+#cpu.60, #memory.60, #battery.60, #disk.60 { background-image: linear-gradient(to right, currentColor 60%, transparent 70%); }
+#cpu.65, #memory.65, #battery.65, #disk.65 { background-image: linear-gradient(to right, currentColor 65%, transparent 75%); }
+#cpu.70, #memory.70, #battery.70, #disk.70 { background-image: linear-gradient(to right, currentColor 70%, transparent 80%); }
+#cpu.75, #memory.75, #battery.75, #disk.75 { background-image: linear-gradient(to right, currentColor 75%, transparent 85%); }
+#cpu.80, #memory.80, #battery.80, #disk.80 { background-image: linear-gradient(to right, currentColor 80%, transparent 90%); }
+#cpu.85, #memory.85, #battery.85, #disk.85 { background-image: linear-gradient(to right, currentColor 85%, transparent 95%); }
+#cpu.90, #memory.90, #battery.90, #disk.90 { background-image: linear-gradient(to right, currentColor 90%, transparent); }
+#cpu.95, #memory.95, #battery.95, #disk.95 { background-image: linear-gradient(to right, currentColor 95%, transparent); }
+
+#battery, #cpu, #memory, #disk {
+	min-width: 6rem;
+	margin: 0 .5rem 0 .5rem;
+	background-position: 100% 85%;
+	background-size: 55% 0.5rem;
+	background-repeat: no-repeat; 
+}

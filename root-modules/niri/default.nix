@@ -1,9 +1,19 @@
-{pkgs, lib, config, ...}:
+{ config, lib, pkgs, ... }:
 
-{
-  programs.niri.enable = true;
+with lib;
 
-  environment.systemPackages = with pkgs; [
-    xwayland-satellite
-  ];
+let
+  cfg = config.rootModules.niri;
+in {
+  options.rootModules.niri = {
+    enable = mkEnableOption "enable niri module";
+  };
+  
+  config = mkIf cfg.enable {
+    programs.niri.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      xwayland-satellite
+    ];
+  };
 }

@@ -1,28 +1,46 @@
-{ config, pkgs, lib, ... }:
-{
-  home.packages = with pkgs; [
-    ripgrep
-    fd
-    fzf
-    lua-language-server
+{ config, lib, pkgs, ... }:
+
+with lib;
+
+let
+  cfg = config.homeModules.neovim;
+in {
+  options.homeModules.neovim = {
+    enable = mkEnableOption "enable neovim module";
+  };
+
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      ripgrep
+      fd
+      fzf
+      lua-language-server
     
-    # Nix utils
-    nil
-    nixpkgs-fmt
+      # Nix utils
+      nil
+      nixpkgs-fmt
 
-    nodejs
-  ];
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-
-    plugins = with pkgs.vimPlugins; [
-      telescope-nvim
-      nvim-treesitter
-      nvim-lspconfig
+      marksman
+      nodejs
     ];
+
+    programs.neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+
+      plugins = with pkgs.vimPlugins; [
+        telescope-nvim
+        (nvim-treesitter.withPlugins (p: [ p.markdown p.nix]))
+        nvim-lspconfig
+	nvim-lint
+        conform-nvim
+	lualine-nvim
+	noice-nvim
+	plenary-nvim
+	outline-nvim
+      ];
+    };
   };
 }
 

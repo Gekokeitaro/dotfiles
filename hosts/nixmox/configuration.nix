@@ -4,10 +4,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../root-modules/podman
-      #./../containers/ollama-oci.nix
-      ../../containers/koboldai.nix
+      ../../root-modules
     ];
+
+  rootModules.podman.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

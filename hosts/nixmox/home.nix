@@ -1,10 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
-    ../../modules/neovim
-    ../../modules/opencode
+    ../../modules
+    inputs.nvf.homeManagerModules.default
   ];
+
+  homeModules.nvf.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -13,9 +15,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    pkgs.hello
-  ];
+  home.packages = [];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
