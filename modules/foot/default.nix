@@ -1,5 +1,15 @@
-{pkgs, lib, config, ...}:
+{ config, lib, pkgs, ... }:
 
-{
-  programs.foot.enable = true;
+with lib;
+
+let
+  cfg = config.homeModules.foot;
+in {
+  options.homeModules.foot = {
+    enable = mkEnableOption "enable foot module";
+  };
+  
+  config = mkIf cfg.enable {
+    programs.foot.enable = true;
+  };
 }

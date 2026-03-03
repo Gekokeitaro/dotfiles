@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [ 
-    ../../modules/alacritty
+    ../../modules
     #./../modules/foot
-    ../../modules/waybar
+    inputs.nvf.homeManagerModules.default
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -14,7 +14,17 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [ ];
+  home.packages = with pkgs; [
+    crawl
+    crawlTiles
+  ];
+
+  homeModules.opencode.enable = true;
+  homeModules.alacritty.enable = true;
+  homeModules.waybar.enable = true;
+  homeModules.lazygit.enable = true;
+  #homeModules.neovim.enable = true;
+  homeModules.nvf.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
