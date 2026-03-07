@@ -12,8 +12,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixmox"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    hostName = "nixmox"; # Define your hostname.
+    firewall.allowedTCPPorts = [ 5001];
+  };
 
   time.timeZone = "Europe/Madrid";
 
@@ -60,6 +63,5 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
 
