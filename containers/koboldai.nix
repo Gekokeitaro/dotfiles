@@ -23,9 +23,10 @@
         "--group-add=video"
       ];
       environment = {
-        KCPP_DONT_TUNNEL= "true";
-        KCPP_GPULAYERS = "35";
-        KCPP_CONTEXTSIZE = "16384";
+        KCPP_DONT_TUNNEL   = "true";
+        KCPP_GPULAYERS     = "35";
+        KCPP_CONTEXTSIZE   = "16384";
+        KCPP_OPENAICOMPAT  = "1";
       };
     };
   };
