@@ -47,6 +47,8 @@
     git
   ];
 
+  hardware.graphics.enable = true;
+
   # Configuración SSH
   services.openssh = {
     enable = true;
