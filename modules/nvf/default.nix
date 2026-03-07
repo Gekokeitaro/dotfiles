@@ -34,6 +34,16 @@ in {
           nix.enable = true;
           markdown.enable = true;
         };
+        
+        snippets.luasnip = {
+          enable = true;
+          loaders = ''
+            require("luasnip.loaders.from_lua").load({paths = { "${./snippets}"}})
+          '';
+          setupOpts = {
+            enable_autoSnippets = true;
+          };
+        };
       };
     };
   };
