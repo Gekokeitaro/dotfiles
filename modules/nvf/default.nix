@@ -25,13 +25,24 @@ in {
         statusline.lualine.enable = true;
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
+        filetree.neo-tree.enable = true;
+        lsp.enable = true;
 
         languages = {
-          enableLSP = true;
           enableTreesitter = true;
           
           nix.enable = true;
           markdown.enable = true;
+        };
+        
+        snippets.luasnip = {
+          enable = true;
+          loaders = ''
+            require("luasnip.loaders.from_lua").load({paths = { "${./snippets}"}})
+          '';
+          setupOpts = {
+            enable_autoSnippets = true;
+          };
         };
       };
     };
