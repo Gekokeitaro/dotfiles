@@ -23,10 +23,8 @@
         "--group-add=video"
       ];
       environment = {
-        KCPP_DONT_TUNNEL   = "true";
-        KCPP_GPULAYERS     = "35";
-        KCPP_CONTEXTSIZE   = "16384";
-        KCPP_OPENAICOMPAT  = "1";
+        KCPP_DONT_TUNNEL = "true";
+        KCPP_ARGS = "--model /models/qwen2.5-coder-14b-instruct-q4_k_m.gguf --contextsize 32768 --ropeconfig 0.5 --gpu-layers 48 --batch-size 256 --usevulkan --threads 12";
       };
     };
   };
