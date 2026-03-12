@@ -27,7 +27,7 @@
         # ROCm no está soportado en la imagen oficial de koboldcpp.
         # El wiki oficial recomienda Vulkan para AMD (soporta AMD y Nvidia).
         # Para ROCm nativo, usar el fork: ghcr.io/yellowrosecx/koboldcpp-rocm
-        KCPP_ARGS = "--model /models/qwen2.5-coder-14b-instruct-q4_k_m.gguf --usevulkan --gpulayers 16 --contextsize 8192 --ropeconfig 0.5";
+        KCPP_ARGS = "--model /models/qwen2.5-coder-14b-instruct-q4_k_m.gguf --contextsize 16384 --ropeconfig 0.5 --gpu-layers 48 --batch-size 256 --usevulkan --threads 12";
       };
     };
   };
