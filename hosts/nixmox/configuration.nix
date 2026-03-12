@@ -45,7 +45,6 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
-    git
   ];
 
   hardware.graphics.enable = true;
@@ -61,6 +60,11 @@
       X11Forwarding = false;
       PermitRootLogin = "prohibit-password";
     };
+  };
+
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 5d";
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
