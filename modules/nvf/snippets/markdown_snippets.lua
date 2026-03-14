@@ -39,23 +39,22 @@ ls.add_snippets("all", {
     s("newNote", fmt([[
 ---
 id: {}
+title: {}
+imgs: []
 created: {}
 modified: {}
-tags: {}
-alias:
-  - {}
-  - {}
+tags: [{}]
+alias: []
 ---
 
 {}
 ]], {
         f(random_hex),
-        f(function() return current_date("%Y-%m-%dT%H:%M") end),
-        f(function() return current_date("%Y-%m-%dT%H:%M") end),
         i(1),
-        f(function() return format_filename(nil, nil, "capitalize") end),
-        f(function() return format_filename(nil, nil, "downcase") end),
+        f(function() return current_date("%Y-%m-%dT%H:%M:%SZ") end),
+        f(function() return current_date("%Y-%m-%dT%H:%M:%SZ") end),
         i(2),
+        i(3),
     })),
 })
 
@@ -101,8 +100,7 @@ ls.add_snippets("all", {
 ls.add_snippets("all", {
     s("seedbedTags", t({
         "",
-        "  - type/seedbed",
-        "  - queued/seedbed",
+        "type/seedbed, queued/seedbed",
     })),
 })
 
@@ -110,8 +108,7 @@ ls.add_snippets("all", {
 ls.add_snippets("all", {
     s("sproutTags", t({
         "",
-        "  - type/sprout",
-        "  - queued/note",
+        "type/sprout, queued/note",
     })),
 })
 
@@ -119,8 +116,7 @@ ls.add_snippets("all", {
 ls.add_snippets("all", {
     s("signpostTags", t({
         "",
-        "  - type/signpost",
-        "  - queued/signpost",
+        "type/signpost, queued/signpost",
     })),
 })
 
@@ -128,8 +124,7 @@ ls.add_snippets("all", {
 ls.add_snippets("all", {
     s("archivedTags", t({
         "",
-        "  - type/archive",
-        "  - queued/archive",
+        "type/archive, queued/archive",
     })),
 })
 
