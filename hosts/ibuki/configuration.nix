@@ -38,11 +38,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim
+    #vim
     wget
     git
     magic-wormhole
-    neofetch
+    fastfetch
   ];
   
   fonts.packages = with pkgs; [
