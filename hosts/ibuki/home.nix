@@ -26,6 +26,7 @@
   #homeModules.neovim.enable = true;
   homeModules.nvf.enable = true;
   homeModules.ghostty.enable = true;
+  homeModules.fcitx5.enable = true;
 
   xdg.configFile."niri/config.kdl".source = ./config.kdl;
   
