@@ -19,6 +19,7 @@
   # Layout del teclado en español para la terminal
   console.keyMap = "es";
 
+  i18n.defaultLocale = "es_ES.UTF-8";
   services.xserver = {
     enable = true;
     xkb.layout = "es"; # Layout del teclado en español para UI

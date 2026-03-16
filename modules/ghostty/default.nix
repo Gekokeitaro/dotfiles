@@ -18,54 +18,49 @@ in {
           Name = "Default";
           "Default Layout" = "es";
           DefaultIM = "keyboard-es";
+        };
 
-          "Items/0" = {
-            Name = "keyboard-es";
-            GroupOrder = {
-              "0" = "Default";
-            };
-          };
+        "Groups/0/Items/0" = {
+          Name = "keyboard-es";   
+        };
+          
+        GroupOrder = {
+          "0" = "Default";
         };
       };
 
       globalOptions = {
         Hotkey = {
-          EnumerateWithTriggerKeys = True;
-          EnumerateSkipFirst = False;
+          EnumerateWithTriggerKeys = "True";
+          EnumerateSkipFirst = "False";
           ModifierOnlyKeyTimeout = 250;
-          
-          TriggerKeys = {
-            "0" = "Control+space";
-            "1" = "Zenkaku_Hankaku";
-            "2" = "Hangul";
-          };
-
-          ActivateKeys."0" = "Hangul_Hanja";
-          DeactivateKeys."0" = "Hangul_Romaja";
-          AltTriggerKeys."0" = "Shift_L";
-          EnumerateGroupForwardKeys."0" = "Super+space";
-          EnumerateGroupBackwardKeys."0" = "Shift+Super+space";
-          PrevPage."0" = "Up";
-          NextPage."0" = "Down";
-          PrevCandidate."0" = "Shift+Tab";
-          NextCandidate."0" = "Tab";
-          TogglePreedit."0" = "Control+Alt+P";
+          TriggerKeys = "Control+space, Zenkaku_Hankaku, Hangul";
+          ActivateKeys = "Hangul_Hanja";
+          DeactivateKeys = "Hangul_Romaja";
+          AltTriggerKeys = "Shift_L";
+          EnumerateGroupForwardKeys = "Super+space";
+          EnumerateGroupBackwardKeys = "Shift+Super+space";
+          PrevPage = "Up";
+          NextPage = "Down";
+          PrevCandidate = "Shift+Tab";
+          NextCandidate = "Tab";
+          TogglePreedit = "Control+Alt+P";
         };
 
         Behavior = {
-          ActiveByDefault = False;
-          resetStateWhenFocusIn = No;
-          ShareInputState = No;
-          PreeditEnabledByDefault = True;
-          ShowInputMethodInformation = True;
-          showInputMethodInformationWhenFocusIn = False;
-          CompactInputMethodInformation = True;
-          ShowFirstInputMethodInformation = True;
+          ActiveByDefault = "False";
+          resetStateWhenFocusIn = "No";
+          ShareInputState = "No";
+          PreeditEnabledByDefault = "True";
+          ShowInputMethodInformation = "True";
+          showInputMethodInformationWhenFocusIn = "False";
+          CompactInputMethodInformation = "True";
+          ShowFirstInputMethodInformation = "True";
           DefaultPageSize = 5;
-          OverrideXkbOption = False;
-          PreloadInputMethod = True;
-          AllowInputMethodForPassword = False;
-          ShowPreeditForPassword = False;
+          OverrideXkbOption = "False";
+          PreloadInputMethod = "True";
+          AllowInputMethodForPassword = "False";
+          ShowPreeditForPassword = "False";
           AutoSavePeriod = 30;
         };
       };
