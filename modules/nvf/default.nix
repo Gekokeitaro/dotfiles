@@ -22,6 +22,12 @@ in {
           style = "dark";
         };
 
+        options = {
+          tabstop = 2;
+          shiftwidth = 0;
+          autoindent = true;
+        };
+
         statusline.lualine.enable = true;
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
