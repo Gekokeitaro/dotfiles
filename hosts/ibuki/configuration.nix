@@ -19,15 +19,25 @@
   # Layout del teclado en español para la terminal
   console.keyMap = "es";
 
-  services.xserver = {
-    enable = true;
-    xkb.layout = "es"; # Layout del teclado en español para UI
-    autoRepeatDelay = 200;
-    autoRepeatInterval = 35;
-	    #windowManager.qtile.enable = true;
+  services = {
+    displayManager.ly.enable = true;
+
+    # Battery
+    tlp.enable = true;
+    thermald.enable = true;
+
+    xserver = {
+      enable = true;
+      xkb.layout = "es"; # Layout del teclado en español para UI
+      autoRepeatDelay = 200;
+      autoRepeatInterval = 35;
+    };
   };
 
-  services.displayManager.ly.enable = true;
+  #powerManagement = {
+  #  enable = true;
+  #  powertop.enable = true;
+  #};
 	
   users.users.ibuki= {
     isNormalUser = true;
