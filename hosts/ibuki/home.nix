@@ -17,6 +17,12 @@
   home.packages = with pkgs; [
     crawl
     crawlTiles
+    ripgrep
+    fzf
+    fd
+    eza
+    bat
+    zoxide
   ];
 
   homeModules.opencode.enable = true;
