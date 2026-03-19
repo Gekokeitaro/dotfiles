@@ -10,6 +10,16 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.alacritty.enable = true;
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        font = {
+          normal = {
+            family = "cozette";
+            style = "regular";
+          };
+        };
+      };
+    };
   };
 }
