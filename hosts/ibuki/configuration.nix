@@ -57,6 +57,7 @@
   
   fonts.packages = with pkgs; [
     cozette
+    nerd-fonts.proggy-clean-tt
   ];
 
   # Configuración SSH

@@ -28,7 +28,10 @@ in {
           autoindent = true;
         };
 
-        statusline.lualine.enable = true;
+        statusline.lualine = {
+          enable = true;
+          theme = "horizon";
+        };
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
         filetree.neo-tree.enable = true;
