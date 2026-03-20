@@ -17,6 +17,8 @@
   home.packages = with pkgs; [
     crawl
     crawlTiles
+    lynx
+    nyxt
   ];
 
   homeModules.opencode.enable = true;
