@@ -16,22 +16,33 @@ in {
         viAlias = true;
         vimAlias = true;
 
+        ui.noice = {
+          enable = true;
+          setupOpts = {
+            messages = {
+              enable = true;
+            };
+          };
+        };
+
         theme = {
           enable = true;
-          name = "gruvbox";
-          style = "dark";
+          name = "catppuccin";
+          style = "mocha";
         };
 
         options = {
           tabstop = 2;
           shiftwidth = 0;
           autoindent = true;
+          cmdheight = 0;
         };
 
         statusline.lualine = {
           enable = true;
           theme = "horizon";
         };
+
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
         filetree.neo-tree.enable = true;
@@ -42,6 +53,7 @@ in {
           
           nix.enable = true;
           markdown.enable = true;
+          lua.enable = true;
         };
         
         snippets.luasnip = {

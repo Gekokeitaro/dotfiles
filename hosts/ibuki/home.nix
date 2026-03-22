@@ -20,14 +20,16 @@
   ];
 
   homeModules.opencode.enable = true;
-  homeModules.alacritty.enable = true;
   homeModules.waybar.enable = true;
   homeModules.lazygit.enable = true;
-  #homeModules.neovim.enable = true;
   homeModules.nvf.enable = true;
   homeModules.ghostty.enable = true;
+  homeModules.foot.enable = true;
+  homeModules.alacritty.enable = true;
+  homeModules.tmux.enable = true;
+  homeModules.sway.enable = true;
 
-  xdg.configFile."niri/config.kdl".source = ./config.kdl;
+  xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
   
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

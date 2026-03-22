@@ -10,6 +10,19 @@ in {
   };
   
   config = mkIf cfg.enable {
-    programs.foot.enable = true;
+    programs.foot = {
+      enable = true;
+
+      settings = {
+        main = {
+          font = "Cozette:size=10";
+          letter-spacing = "1px";
+        };
+
+        colors-dark = {
+          alpha = "0.85";
+        };
+      };
+    };
   };
 }

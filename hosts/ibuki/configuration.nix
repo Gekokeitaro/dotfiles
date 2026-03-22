@@ -7,7 +7,7 @@
       ../../root-modules
     ];
 
-  rootModules.niri.enable = true;
+  #rootModules.niri.enable = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -15,25 +15,40 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Madrid";
-
-  # Layout del teclado en español para la terminal
   console.keyMap = "es";
+  i18n.defaultLocale = "es_ES.UTF-8";
 
   services = {
-    displayManager.ly.enable = true;
+    #displayManager.ly.enable = true;
+
+    greetd = {
+      enable = true;
+      settings = {
+        default_session.command = ''
+          ${pkgs.tuigreet}/bin/tuigreet \
+          --time  \
+          --asterisks \
+          --user-menu \
+          --cmd sway
+        '';
+      };
+    };
 
     # Battery
     tlp.enable = true;
     thermald.enable = true;
 
-    xserver = {
-      enable = true;
-      xkb.layout = "es"; # Layout del teclado en español para UI
-      autoRepeatDelay = 200;
-      autoRepeatInterval = 35;
-    };
+    #xserver = {
+    #  enable = true;
+    #  xkb.layout = "es"; # Layout del teclado en español para UI
+    #  autoRepeatDelay = 200;
+    #  autoRepeatInterval = 35;
+    #};
   };
 
+  environment.etc."greetd/environments".text = ''
+    sway
+  '';
   #powerManagement = {
   #  enable = true;
   #  powertop.enable = true;
@@ -53,6 +68,7 @@
     git
     magic-wormhole
     fastfetch
+    tealdeer
   ];
   
   fonts.packages = with pkgs; [
