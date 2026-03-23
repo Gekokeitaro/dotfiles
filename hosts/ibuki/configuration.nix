@@ -19,7 +19,6 @@
   i18n.defaultLocale = "es_ES.UTF-8";
 
   services = {
-    #displayManager.ly.enable = true;
 
     greetd = {
       enable = true;
@@ -37,13 +36,6 @@
     # Battery
     tlp.enable = true;
     thermald.enable = true;
-
-    #xserver = {
-    #  enable = true;
-    #  xkb.layout = "es"; # Layout del teclado en español para UI
-    #  autoRepeatDelay = 200;
-    #  autoRepeatInterval = 35;
-    #};
   };
 
   environment.etc."greetd/environments".text = ''
