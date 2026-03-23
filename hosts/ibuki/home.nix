@@ -39,6 +39,15 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+  
+  services = {
+    wpaperd = {
+      enable = true;
+      settings.eDP-1 = {
+        path = ./wallpaper.jpg;
+      };
+    };
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
