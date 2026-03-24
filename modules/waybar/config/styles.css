@@ -25,7 +25,7 @@ window#waybar {
 
 .modules-left,
 .modules-right {
-	background: @surface0;
+	background: alpha(@surface0, 0.8);
 	border: .15rem solid @red;
 	border-radius: 2rem;
 	padding: .125rem .25rem;

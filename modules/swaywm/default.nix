@@ -35,7 +35,7 @@ in {
         };
 
         gaps = {
-          inner = 10;
+          inner = 4;
         };
 
         startup = [
