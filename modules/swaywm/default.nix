@@ -22,7 +22,7 @@ in {
 
       config = {
         modifier = "Mod4";
-        terminal = "foot -e tmux";
+        terminal = "foot";
         
         bars = [{
           position = "top";
@@ -38,10 +38,6 @@ in {
           inner = 4;
         };
 
-        startup = [
-          { command = "foot -e tmux"; }
-        ];
-        
         input."*" = {
           xkb_layout = "es";
         };
