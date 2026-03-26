@@ -7,6 +7,11 @@
       position = "top";
       output = [ "eDP-1" ];
 
+      margin-top = 4;
+      margin-left = 4;
+      margin-bottom = 0;
+      margin-right = 4;
+
       modules-left= [
         "battery"
         "cpu"
