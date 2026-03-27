@@ -23,15 +23,26 @@ in {
       config = {
         modifier = "Mod4";
         terminal = "foot -e tmux";
-        
+        defaultWorkspace = "workspace number 1";
+
         bars = [{
           position = "top";
           command = "waybar";
         }];
         
+        keybindings = lib.mkOptionDefault {
+          "Mod4+0" = "exec nyxt";
+        };
         window = {
           titlebar = false;
           border = 2;
+
+          commands = [
+            {
+              command = ''move to workspace 5'';
+              criteria = { app_id = "nyxt"; };
+            }
+          ];
         };
 
         gaps = {
