@@ -19,10 +19,33 @@
         "disk"
         "temperature"
       ];
+
+      modules-center = [ "sway/workspaces" ];
       
       modules-right = [
         "clock"
       ];
+
+      "sway/workspaces" = {
+        format = "{icon}";
+        on-click = "activate";
+        format-icons = {
+          "1" = "⚘";
+          "2" = ".";
+          "3" = "♣";
+          "4" = "⧉";
+          "5" = "⌬";
+          "focused" = "@";
+        };
+
+        persistent-workspaces = {
+          "1" = ["eDP-1"];
+          "2" = ["eDP-1"];
+          "3" = ["eDP-1"];
+          "4" = ["eDP-1"];
+          "5" = ["eDP-1"];
+        };
+      };
 
       "clock" = {
         format = "<span size='large'>{:%H:%M}</span>";

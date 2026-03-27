@@ -23,13 +23,19 @@ window#waybar {
 	font-size: 10px;
 }
 
-.modules-left,
-.modules-right {
+.modules-left, 
+.modules-right, 
+.modules-center {
 	background: alpha(@surface0, 0.8);
 	border: .15rem solid @red;
 	border-radius: 2rem;
 	padding: .125rem .25rem;
 	margin: .125rem;
+}
+
+.modules-center button {
+  margin: -4px 0px;
+  font-size: 16px;
 }
 
 #battery {
