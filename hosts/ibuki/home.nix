@@ -30,6 +30,10 @@
   homeModules.alacritty.enable = true;
   homeModules.tmux.enable = true;
   homeModules.sway.enable = true;
+  homeModules.pico8 = {
+    enable = true;
+    binaryPath = "$HOME/.local/share/pico8/pico8";
+  };
 
   xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
   
