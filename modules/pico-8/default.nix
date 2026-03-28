@@ -2,41 +2,45 @@
 let
   cfg = config.homeModules.pico8;
   pico8Pkg = pkgs.writeShellScriptBin "pico8" ''
-    if [! -x "${cfg.binaryPath}" ]; then
+    if [ ! -x "${cfg.binaryPath}" ]; then
       echo "PICO-8 no encontrado o no ejecutable en: ${cfg.binaryPath}"
       exit 1
     fi
 
-    exec ${ pkgs.buildFHSUserEnv {
+    exec ${ pkgs.buildFHSEnv {
       name = "pico8-fhs";
       targetPkgs = pkgs: with pkgs; [
-        xorg.libX11
-        xorg.libXext
-        xorg.libXcursor
-        xorg.libXinerama
-        xorg.libXi
-        xorg.libXrandr
-        xorg.libXScrnSaver
-        xorg.libXxf86vm
-        xorg.libxcb
-        xorg.libXrender
-        xorg.libXFixes
-        xorg.libXau
-        xorg.libXdmcp
+        libx11
+        libxext
+        libxcursor
+        libxinerama
+        libxi
+        libxrandr
+        libxscrnsaver
+        libxxf86vm
+        libxcb
+        libxrender
+        libxfixes
+        libxau
+        libxdmcp
         alsa-lib
         udev
         wget
+        apulse
       ];
       
-      runScript = "bash";
-    }}/bin/pico8-fhs -- "${cfg.binaryPath}" "$@"
+      runScript = pkgs.writeShellScript "pico8-runner" ''
+        exec "$@"
+      '';
+
+    }}/bin/pico8-fhs "${cfg.binaryPath}" "$@"
   '';
 in {
-  options.programs.pico8 = {
+  options.homeModules.pico8 = {
     enable = lib.mkEnableOption "PICO-8";
 
     binaryPath = lib.mkOption {
-      type = lib.types.path;
+      type = lib.types.str;
       example = "$HOME/.local/share/pico8/pico8";
       description = "Ruta al binario de PICO-8";
     };
