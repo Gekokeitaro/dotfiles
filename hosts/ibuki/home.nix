@@ -32,7 +32,7 @@
   homeModules.sway.enable = true;
   homeModules.pico8 = {
     enable = true;
-    binaryPath = "$HOME/.local/share/pico8/pico8";
+    binaryPath = "$HOME/.local/share/pico-8/pico8";
   };
 
   xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
