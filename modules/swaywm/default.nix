@@ -32,6 +32,10 @@ in {
         
         keybindings = lib.mkOptionDefault {
           "Mod4+0" = "exec nyxt";
+          "Mod4+9" = "exec kill";
+          "Mod4+8" = "exec pico8";
+          "Mod4+7" = "exec kill";
+          "Mod4+6" = "exec kill";
         };
         window = {
           titlebar = false;
@@ -41,6 +45,10 @@ in {
             {
               command = ''move to workspace 5'';
               criteria = { app_id = "nyxt"; };
+            }
+            {
+              command = ''move to workspace 4'';
+              criteria = { class = "pico8"; };
             }
           ];
         };
