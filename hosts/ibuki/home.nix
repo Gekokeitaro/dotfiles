@@ -17,12 +17,20 @@
   home.packages = with pkgs; [
     crawl
     crawlTiles
+    atuin
+    bulletty
+    #bookokrat -> Flakes
+    glow
     ripgrep
     fzf
     fd
+    btop
     eza
     bat
     zoxide
+    impala
+    bluetui
+    yazi
     lynx
     nyxt
   ];
