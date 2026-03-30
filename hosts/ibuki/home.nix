@@ -33,6 +33,7 @@
     yazi
     lynx
     nyxt
+    swaybg
   ];
 
   homeModules.opencode.enable = true;
@@ -60,14 +61,14 @@
     # EDITOR = "emacs";
   };
   
-  services = {
-    wpaperd = {
-      enable = true;
-      settings.eDP-1 = {
-        path = ./wallpaper.jpg;
-      };
-    };
-  };
+  #services = {
+  #  wpaperd = {
+  #    enable = true;
+  #    settings.eDP-1 = {
+  #      path = .wallpapers/wallpaper.jpg;
+  #    };
+  #  };
+  #};
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
