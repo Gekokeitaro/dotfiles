@@ -47,7 +47,7 @@ in {
             };
           };
           config = {
-            virtual-text = true;
+            virtual_text = true;
           };
         };
 
@@ -56,6 +56,10 @@ in {
           name = "catppuccin";
           style = "mocha";
           transparent = true;
+        };
+
+        highlight = {
+          LineNr = { fg = "#cdd6f4"; };
         };
 
         lineNumberMode = "number";
@@ -68,6 +72,7 @@ in {
           cmdheight = 0;
           termguicolors = true;
           mouse = "a";
+          cursorline = true;
         };
 
         statusline.lualine = {
