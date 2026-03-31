@@ -37,6 +37,20 @@ in {
           };
         };
 
+        diagnostics = {
+          enable = true;
+          nvim-lint = {
+            enable = true;
+            linters_by_ft = {
+              markdown = [ "vale" ];
+              text = [ "vale" ];
+            };
+          };
+          config = {
+            virtual-text = true;
+          };
+        };
+
         theme = {
           enable = true;
           name = "catppuccin";
@@ -86,8 +100,18 @@ in {
 
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
-        filetree.neo-tree.enable = true;
-        lsp.enable = true;
+        
+        filetree.neo-tree = {
+          enable = true;
+          setupOpts = {
+            hijack_netrw_behaviour = "disabled";
+          };
+        };
+
+        lsp = {
+          enable = true;
+          trouble.enable = true;
+        };
 
         languages = {
           enableTreesitter = true;
@@ -95,6 +119,12 @@ in {
           nix.enable = true;
           markdown.enable = true;
           lua.enable = true;
+        };
+
+        spellcheck = {
+          enable = true;
+          languages = [ "en" "es" ];
+          programmingWordlist.enable = true;
         };
         
         snippets.luasnip = {
