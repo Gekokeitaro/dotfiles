@@ -33,6 +33,7 @@
     yazi
     lynx
     nyxt
+    swaybg # TODO: Unir a sway
     # linter
     vale
     vale-ls

@@ -58,6 +58,7 @@ in {
         };
 
         startup = [
+          { command = "swaybg -i ~/.wallpapers/wallpaper.jpg -m --fill"; }
           { command = "foot -e tmux"; }
         ];
         
