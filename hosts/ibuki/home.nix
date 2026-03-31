@@ -19,8 +19,8 @@
     crawlTiles
     atuin
     bulletty
-    #bookokrat -> Flakes
     glow
+    koreader
     ripgrep
     fzf
     fd
