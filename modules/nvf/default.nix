@@ -46,8 +46,8 @@ in {
               function(args)
                 local bufnr = args.buf
                 local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 50, false)
-                if lines[0] == "---" then
-                  for i = 1, #lines do
+                if lines[1] == "---" then
+                  for i = 2, #lines do
                     if lines[i] == "---" then 
                       break
                     end
