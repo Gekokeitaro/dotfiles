@@ -48,7 +48,7 @@
       };
 
       "clock" = {
-        format = "<span size='large'>{:%H:%M}</span>";
+        format = "<span size='large'>{:%Y-%m-%d || %H:%M}</span>";
         timezone = "Europe/Madrid";
         interval = 60;
       };
