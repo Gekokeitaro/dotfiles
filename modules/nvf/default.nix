@@ -24,9 +24,12 @@ in {
     in {
       programs.nvf = {
         enable = true;
-        settings.vim = (
+        settings.vim = {
           viAlias = true;
           vimAlias = true;
+
+          keymaps = (commonConfig.keymaps or []) // (hostConfig.keymaps or []);
+          autocmds = (commonConfig.autocmds or []) // (hostConfig.autocmds or []);
 
           ui.noice = {
             enable = true;
@@ -147,14 +150,7 @@ in {
               enable_autoSnippets = true;
             };
           };
-        }
-        // lib.optionalAttrs (commonConfig ? keymaps || hostConfig ? keymaps) {
-          keymaps = (commonConfig.keymaps or []) ++ (hostConfig.keymaps or []);
-        }
-        // lib.optionalAttrs (commonConfig ? autocmds || hostConfig ? autocmds) {
-          autocmds = (commonConfig.autocmds or []) ++ (hostConfig.autocmds or []);
-        }
-        );
+        };
       };
     }
   );
