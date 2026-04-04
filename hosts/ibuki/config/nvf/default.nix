@@ -7,10 +7,7 @@ let
       type == "regular" && lib.hasSuffix ".nix" name && name != "default.nix" 
   ) ( builtins.readDir ./. );
 in
-  # 1. `attrNames` extrae las claves de nixFiles, ordenadas alfabéticamente.
-  # 2. `map` importa el contenido de cada `.nix` como lista
-  # 3. Convertimos la lista en attrSet "name" = value
-  builtins.listToAttrs ( map ( filename: {
-    name = lib.removeSuffix ".nix" filename;
-    value = import ( ./. + "/${filename}" ) { inherit lib; };
-  }) ( builtins.attrNames nixFiles ))
+  builtins.foldl'
+  ( acc: filename: acc // ( import ( ./. + "/${filename}" ) { inherit lib; } ) )
+  {}
+  ( builtins.attrNames nixFiles )

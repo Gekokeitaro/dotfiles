@@ -28,8 +28,8 @@ in {
           viAlias = true;
           vimAlias = true;
 
-          keymaps = (commonConfig.keymaps or []) // (hostConfig.keymaps or []);
-          autocmds = (commonConfig.autocmds or []) // (hostConfig.autocmds or []);
+          keymaps = (commonConfig.keymaps or []) ++ (hostConfig.keymaps or []);
+          autocmds = (commonConfig.autocmds or []) ++ (hostConfig.autocmds or []);
 
           ui.noice = {
             enable = true;

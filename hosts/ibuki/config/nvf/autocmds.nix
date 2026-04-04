@@ -1,10 +1,11 @@
 { lib }:
-[
-  {
-    desc = "Updates modified field in markdown YAML";
-    pattern = [ "*.md" ];
-    event = [ "BufWritePre" ];
-    callback = lib.generators.mkLuaInline ''
+{
+  autocmds = [
+    {
+      desc = "Updates modified field in markdown YAML";
+      pattern = [ "*.md" ];
+      event = [ "BufWritePre" ];
+      callback = lib.generators.mkLuaInline ''
     function(args)
       local bufnr = args.buf
       local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 50, false)
@@ -29,6 +30,7 @@
         end
       end
     end
-    '';
-  }
-]
+      '';
+    }
+  ];
+}
