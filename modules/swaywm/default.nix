@@ -58,7 +58,7 @@ in {
         };
 
         startup = [
-          { command = "swaybg -i /home/ibuki/.wallpapers/wallpaper.jpg -m fill"; }
+          { command = "swaybg -i ~/.wallpapers/wallpaper.jpg -m --fill"; }
           { command = "foot -e tmux"; }
         ];
         
