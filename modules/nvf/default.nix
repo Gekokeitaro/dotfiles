@@ -149,9 +149,16 @@ in {
 
         languages = {
           enableTreesitter = true;
-          
+
           nix.enable = true;
-          markdown.enable = true;
+          
+          html.enable = true;
+          yaml.enable = true;
+          markdown = {
+            enable = true;
+            extensions.render-markdown-nvim.enable = true;
+          };
+
           lua.enable = true;
         };
 
