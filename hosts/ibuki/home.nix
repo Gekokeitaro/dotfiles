@@ -42,7 +42,10 @@
   homeModules.opencode.enable = true;
   homeModules.waybar.enable = true;
   homeModules.lazygit.enable = true;
-  homeModules.nvf.enable = true;
+  homeModules.nvf = {
+    enable = true;
+    hostConfigPath = ./config/nvf;
+  };
   homeModules.ghostty.enable = true;
   homeModules.foot.enable = true;
   homeModules.alacritty.enable = true;
@@ -64,15 +67,6 @@
     # EDITOR = "emacs";
   };
   
-  #services = {
-  #  wpaperd = {
-  #    enable = true;
-  #    settings.eDP-1 = {
-  #      path = ./wallpaper.jpg;
-  #    };
-  #  };
-  #};
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   
