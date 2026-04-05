@@ -18,7 +18,8 @@ in {
 
   config = mkIf cfg.enable (
     let
-      # Función para obtener los ficheros a partir del configPath
+      # Importamos las configuraciones a través de `default.nix`
+      # `default.nix` expone los attrset con sus valores de config.
       commonConfig = import ./config { inherit lib; };
       hostConfig = import "${cfg.hostConfigPath}" { inherit lib; };
     in {
@@ -31,30 +32,19 @@ in {
           keymaps = ( commonConfig.keymaps or [] ) ++ ( hostConfig.keymaps or [] );
           autocmds = ( commonConfig.autocmds or [] ) ++ ( hostConfig.autocmds or [] );
 
-          ui.noice = {
-            enable = true;
-            setupOpts.messages.enable = true;
-          };
+          ui.noice.enable = true;
+          ui.noice.setupOpts.messages.enable = true;
 
-
-          diagnostics = {
-            enable = true;
-            nvim-lint = {
+          diagnostics.enable = true;
+          diagnostics.config.virtual_text = true;
+          diagnostics.nvim-lint = mkIf ( 
+            commonConfig ? linters_by_ft 
+            || hostConfig ? linters_by_ft
+          ) { 
               enable = true;
-              
-              linters_by_ft = mkIf ( 
-                commonConfig ? linters_by_ft 
-                || hostConfig ? linters_by_ft 
-              ) (
-                ( commonConfig.linters_by_ft or {} )
-                // ( hostConfig.linters_by_ft or {} )
-              );
+              linters_by_ft = ( commonConfig.linters_by_ft or {} ) 
+                // ( hostConfig.linters_by_ft or {} );
             };
-
-            config = {
-              virtual_text = true;
-            };
-          };
 
           theme = {
             enable = true;
@@ -64,12 +54,9 @@ in {
           };
 
           visuals.indent-blankline.enable = true;
-
-          highlight = {
-            LineNr = { fg = "#cdd6f4"; };
-          };
-
+          highlight.LineNr = { fg = "#cdd6f4"; };
           lineNumberMode = "number";
+
           undoFile.enable = true;
 
           options = {
@@ -93,32 +80,14 @@ in {
           telescope.enable = true;
           autocomplete.nvim-cmp.enable = true;
 
-          filetree.neo-tree = {
-            enable = true;
-            setupOpts = {
-              hijack_netrw_behaviour = "disabled";
-            };
-          };
+          filetree.neo-tree.enable = true;
+          filetree.neo-tree.setupOpts.hijack_netrw_behaviour = "disabled"; 
 
-          lsp = {
-            enable = true;
-            trouble.enable = true;
-          };
+          lsp.enable = true;
+          lsp.trouble.enable = true;
 
-          languages = {
-            enableTreesitter = true;
-
-            nix.enable = true;
-
-            html.enable = true;
-            yaml.enable = true;
-            markdown = {
-              enable = true;
-              extensions.render-markdown-nvim.enable = true;
-            };
-
-            lua.enable = true;
-          };
+          languages = { enableTreesitter = true; }
+            // ( commonConfig.languages or {} ) // ( hostConfig.languages or {} );
 
           spellcheck = mkIf (commonConfig ? spellcheck || hostConfig ? spellcheck) (
             { enable = true; }
@@ -137,8 +106,5 @@ in {
           };
         };
       };
-    }
-  );
+    });
 }
-
-
