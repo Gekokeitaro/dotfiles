@@ -28,8 +28,8 @@ in {
           viAlias = true;
           vimAlias = true;
 
-          keymaps = (commonConfig.keymaps or []) ++ (hostConfig.keymaps or []);
-          autocmds = (commonConfig.autocmds or []) ++ (hostConfig.autocmds or []);
+          keymaps = ( commonConfig.keymaps or [] ) ++ ( hostConfig.keymaps or [] );
+          autocmds = ( commonConfig.autocmds or [] ) ++ ( hostConfig.autocmds or [] );
 
           ui.noice = {
             enable = true;
@@ -41,11 +41,16 @@ in {
             enable = true;
             nvim-lint = {
               enable = true;
-              linters_by_ft = {
-                markdown = [ "vale" ];
-                text = [ "vale" ];
-              };
+              
+              linters_by_ft = mkIf ( 
+                commonConfig ? linters_by_ft 
+                || hostConfig ? linters_by_ft 
+              ) (
+                ( commonConfig.linters_by_ft or {} )
+                // ( hostConfig.linters_by_ft or {} )
+              );
             };
+
             config = {
               virtual_text = true;
             };
@@ -77,32 +82,12 @@ in {
             cursorline = true;
           };
 
-          statusline.lualine = {
-            enable = true;
-
-            componentSeparator = {};
-            sectionSeparator = { 
-              left = ""; 
-              right = ""; 
-            };
-
-            activeSection = {
-              a = [ '' {"mode", separator = { left = "" }, right_padding = 2 } '' ];
-              b = [ '' "filename", "branch" '' ];
-              c = [];
-              x = [];
-              y = [ '' "filetype", "progress" ''];
-              z = [ '' { "location", separator = { right = "" }, left_padding = 2 } '' ];
-            };
-
-            inactiveSection = {
-              a = [ '' "filename" '' ];
-              b = [];
-              c = [];
-              x = [];
-              y = [];
-              z = [ '' "location" '' ];
-            };
+          statusline = {
+            lualine = mkIf ( commonConfig ? lualine || hostConfig ? lualine ) ( 
+              { enable = true; } 
+              // ( commonConfig.lualine or {} ) 
+              // ( hostConfig.lualine or {} )
+            );
           };
 
           telescope.enable = true;
@@ -135,11 +120,11 @@ in {
             lua.enable = true;
           };
 
-          spellcheck = {
-            enable = true;
-            languages = [ "en" "es" ];
-            programmingWordlist.enable = true;
-          };
+          spellcheck = mkIf (commonConfig ? spellcheck || hostConfig ? spellcheck) (
+            { enable = true; }
+            // ( commonConfig.spellcheck or {} )
+            // (hostConfig.spellcheck or {} )
+          );
 
           snippets.luasnip = {
             enable = true;
