@@ -5,7 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../root-modules
-      ../../containers/koboldai.nix
+      #../../containers/koboldai.nix
     ];
 
   rootModules.podman.enable = true;
