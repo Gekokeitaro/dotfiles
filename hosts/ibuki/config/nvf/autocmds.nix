@@ -17,7 +17,7 @@
 
           if lines[i]:match("^modified:") then
             local prefix = lines[i]:match("^(.-):")
-            local updated_time = os.date("%Y-%m-%dT%H:%M:%SZ")
+            local updated_time = os.date("%Y-%m-%dT%H:%M:%S")
             vim.api.nvim_buf_set_lines(
               bufnr, 
               i-1, 

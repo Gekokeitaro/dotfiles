@@ -1,11 +1,8 @@
 local ls = require("luasnip")
 local s = ls.snippet
-local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
-local c = ls.choice_node
-local d = ls.dynamic_node
 local fmt = require("luasnip.extras.fmt").fmt
 
 -- Función auxiliar para generar ID aleatorio hexadecimal
@@ -51,8 +48,8 @@ alias: []
 ]], {
         f(random_hex),
         i(1),
-        f(function() return current_date("%Y-%m-%dT%H:%M:%SZ") end),
-        f(function() return current_date("%Y-%m-%dT%H:%M:%SZ") end),
+        f(function() return current_date("%Y-%m-%dT%H:%M:%S") end),
+        f(function() return current_date("%Y-%m-%dT%H:%M:%S") end),
         i(2),
         i(3),
     })),
@@ -61,13 +58,9 @@ alias: []
 -- New Note Header
 ls.add_snippets("all", {
     s("newNoteHeader", fmt([[
-# {}
-
 🔗: [^ref1]
-
 {}
 ]], {
-        f(function() return format_filename(nil, nil, "capitalize") end),
         i(1),
     })),
 })
@@ -98,34 +91,22 @@ ls.add_snippets("all", {
 
 -- Seedbed Tags
 ls.add_snippets("all", {
-    s("seedbedTags", t({
-        "",
-        "type/seedbed, queued/seedbed",
-    })),
+    s("seedbedTags", t({"type/seedbed, queued/seedbed",})),
 })
 
 -- Sprout Tags
 ls.add_snippets("all", {
-    s("sproutTags", t({
-        "",
-        "type/sprout, queued/note",
-    })),
+    s("sproutTags", t({"type/sprout, queued/note",})),
 })
 
 -- Signpost Tags
 ls.add_snippets("all", {
-    s("signpostTags", t({
-        "",
-        "type/signpost, queued/signpost",
-    })),
+    s("signpostTags", t({"type/signpost, queued/signpost",})),
 })
 
 -- Archived Tags
 ls.add_snippets("all", {
-    s("archivedTags", t({
-        "",
-        "type/archive, queued/archive",
-    })),
+    s("archivedTags", t({"type/archive, queued/archive",})),
 })
 
 -- Para usar estos snippets, asegúrate de que LuaSnip esté configurado correctamente en tu Neovim
