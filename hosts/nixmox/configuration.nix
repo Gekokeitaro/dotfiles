@@ -46,6 +46,10 @@
     vim
     wget
   ];
+  
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-mono
+  ];
 
   hardware.graphics.enable = true;
   hardware.firmware = [ pkgs.linux-firmware ];  # firmwares yellow_carp_*.bin para Radeon 680M (Rembrandt)
