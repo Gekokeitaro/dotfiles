@@ -9,7 +9,8 @@ in {
     enable = mkEnableOption "enable nvf module";
 
     hostConfigPath = mkOption {
-      type = types.path;
+      type = types.nullOr types.path;
+      default = null;
       description = ''
         Define la ruta donde están los config files del host para nvf
       '';
@@ -21,7 +22,8 @@ in {
       # Importamos las configuraciones a través de `default.nix`
       # `default.nix` expone los attrset con sus valores de config.
       commonConfig = import ./config { inherit lib; };
-      hostConfig = import "${cfg.hostConfigPath}" { inherit lib; };
+      hostConfig = if cfg.hostConfigPath != null && builtins.pathExists cfg.hostConfigPath 
+      then import "${cfg.hostConfigPath}" { inherit lib; } else {};
     in {
       programs.nvf = {
         enable = true;

@@ -5,7 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../root-modules
-      ../../containers/koboldai.nix
+      #../../containers/koboldai.nix
     ];
 
   rootModules.podman.enable = true;
@@ -45,6 +45,10 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+  ];
+  
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-mono
   ];
 
   hardware.graphics.enable = true;
