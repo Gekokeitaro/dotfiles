@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ../../root-modules
       #../../containers/koboldai.nix
+      ../../containers/n8n-starter.nix
     ];
 
   rootModules.podman.enable = true;
