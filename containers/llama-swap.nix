@@ -51,12 +51,14 @@ in
         image = "ghcr.io/mostlygeek/llama-swap:vulkan";
         autoStart = true;
 
-        extraOptions = [
-          "--network=nixmox"
-          # Acceso al renderizador DRI (AMD iGPU)
-          "--device=/dev/dri:/dev/dri"
-          "--group-add=video"
-        ];
+        extraConfig = {
+          Container = {
+            Network = "nixmox";
+            # Acceso al renderizador DRI (AMD iGPU)
+            AddDevice = "/dev/dri:/dev/dri";
+            GroupAdd = "video";
+          };
+        };
 
         ports = [ "8080:8080" ];
 

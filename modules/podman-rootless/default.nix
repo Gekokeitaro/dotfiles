@@ -14,6 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    services.podman.enable = true;
     services.podman.containers = cfg.containers;
   };
 }

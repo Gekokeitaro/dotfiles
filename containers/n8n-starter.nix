@@ -44,13 +44,15 @@ in {
       postgres = {
         image = "postgres:16-alpine";
         cmd = [ "-c" "shared_buffers=64MB" "-c" "work_mem=16MB" "-c" "maintenance_work_mem=32MB" ];
-        extraOptions = [
-          "--network=nixmox"
-          "--health-cmd=pg_isready -h localhost -U $POSTGRES_USER -d $POSTGRES_DB"
-          "--health-interval=5s"
-          "--health-timeout=5s"
-          "--health-retries=10"
-        ];
+        extraConfig = {
+          Container = {
+            Network = "nixmox";
+            HealthCmd = "pg_isready -h localhost -U $POSTGRES_USER -d $POSTGRES_DB";
+            HealthInterval = "5s";
+            HealthTimeout = "5s";
+            HealthRetries = "10";
+          };
+        };
         environmentFiles = [ envFile ];
         volumes = [
           # Storage is relative to rootless environment natively, or mapped to absolute host dirs
@@ -97,12 +99,13 @@ in {
         koboldcpp = {
           image = "koboldai/koboldcpp:latest";
           autoStart = false;
-          extraOptions = [ 
-            "--network=nixmox" 
-            # Vulkan utiliza obligatoriamente el renderizador directo
-            "--device=/dev/dri:/dev/dri"
-            "--group-add=video"
-          ];
+          extraConfig = {
+            Container = {
+              Network = "nixmox";
+              AddDevice = "/dev/dri:/dev/dri";
+              GroupAdd = "video";
+            };
+          };
           environment = {
             KCPP_DONT_TUNNEL = "true";
             KCPP_ARGS = "--usevulkan 0 --host 0.0.0.0 --port 5001 --contextsize 32768 --admin --admindir /admindir --downloaddir /models --routermode --adminunloadtimeout 30 --nomodel";       
