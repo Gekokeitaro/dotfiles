@@ -12,7 +12,7 @@ in
   };
 
   config = lib.mkIf config.containers.llama-swap.enable {
-    modules.podman.enable = true;
+    homeModules.podman.enable = true;
 
     # ==========================================
     # CREACIÓN AUTOMÁTICA DE DIRECTORIOS
@@ -46,7 +46,7 @@ in
     #
     # La interfaz web estará disponible en:
     #   http://localhost:8080/ui
-      modules.podman.containers = {
+      homeModules.podman.containers = {
       "llama-swap" = {
         image = "ghcr.io/mostlygeek/llama-swap:vulkan";
         autoStart = true;
