@@ -9,7 +9,7 @@ in {
     enable = mkEnableOption "enable podman module (rootless support)";
    host = mkOption {
       type = types.str;
-      default = "hostName";
+      default = config.networking.hostName;
       description = "Usuario principal para agregar al grupo podman";
     };
   };
@@ -28,7 +28,7 @@ in {
     };
 
     # TODO: Modularize
-    users.users.${host} = { # replace `<USERNAME>` with the actual username
+    users.users.${cfg.host} = { # replace `<USERNAME>` with the actual username
       extraGroups = [
         "podman"
       ];
