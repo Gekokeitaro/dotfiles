@@ -5,8 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../root-modules
-      #../../containers/koboldai.nix
-      ../../containers/n8n-starter.nix
+      #../../containers/llama-swap.nix
     ];
 
   rootModules.podman.enable = true;
