@@ -1,4 +1,4 @@
-{ config, lib }:
+{ config, lib, ... }:
 let
   baseDir = "${config.home.homeDirectory}/.local/share/n8n-starter";
   sharedDataDir = "${baseDir}/shared";

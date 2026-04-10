@@ -1,4 +1,4 @@
-{ config, lib }:
+{ config, lib, ... }:
 
   let
   # Directorio base para datos persistentes de llama-swap
