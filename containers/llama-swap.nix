@@ -17,13 +17,13 @@ in
     # ==========================================
     # CREACIÓN AUTOMÁTICA DE DIRECTORIOS
     # ==========================================
-    systemd.tmpfiles.rules = [
-      "d ${baseDir} 0755 root root -"
-      "d ${modelsDir} 0755 root root -"
-      "d ${configDir} 0755 root root -"
+    systemd.user.tmpfiles.rules = [
+      "d ${baseDir} 0755 - - - -"
+      "d ${modelsDir} 0755 - - - -"
+      "d ${configDir} 0755 - - - -"
     ];
 
-    xdg.configFile."container/systemd/nixmox.network".text = ''
+    xdg.configFile."containers/systemd/nixmox.network".text = ''
       [Network]
       Label=nixmox
     '';

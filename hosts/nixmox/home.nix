@@ -4,9 +4,11 @@
   imports = [
     ../../modules
     inputs.nvf.homeManagerModules.default
+    ../../containers/llama-swap.nix
   ];
 
   homeModules.nvf.enable = true;
+  containers.llama-swap.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
