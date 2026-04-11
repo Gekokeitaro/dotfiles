@@ -14,17 +14,26 @@ in {
     programs.opencode.settings = {
       default_agent = "plan";
       provider = {
-        koboldcpp = {
+        llama-swap = {
           npm = "@ai-sdk/openai-compatible";
-          name = "KoboldCPP";
+          name = "llama-swap (local)";
           options = {
-            baseURL = "http://192.168.18.3:5001/v1";
+            baseURL = "http://192.168.18.3:8080/v1";
           };
           models = {
-            "koboldcpp/qwen2.5-coder-14b-instruct-q4_k_m" = {
-              name = "Qwen 2.5 Coder 14B";
+            "gpt-oss-20b-NEO-IQ4_NL" = {
+              name = "GPT OSS 20b NEO IQ4_NL";
             };
-          };
+            "gpt-oss-20b-NEO-IQ4_NL:low" = {
+              name = "GPT OSS 20b NEO IQ4_NL (low)";
+            };
+            "gpt-oss-20b-NEO-IQ4_NL:high" = {
+              name = "GPT OSS 20b NEO IQ4_NL (high)";
+            };
+            "qwen3.5-9b-claude-4.6-uncensored-thinking" = {
+              name = "Qwen3.5 9b + Claude4.6 uncensored (thinking)";
+            };
+         };
         };
       };
     };
