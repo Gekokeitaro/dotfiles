@@ -16,7 +16,7 @@
   networking = {
     networkmanager.enable = true;
     hostName = "nixmox"; # Define your hostname.
-    firewall.allowedTCPPorts = [ 5001];
+    firewall.allowedTCPPorts = [ 5001 8080 ];
   };
 
   time.timeZone = "Europe/Madrid";
@@ -36,6 +36,7 @@
 	
   users.users.nixmox= {
     isNormalUser = true;
+    linger = true; # Alternativas?
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
