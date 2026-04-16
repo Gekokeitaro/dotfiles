@@ -17,6 +17,7 @@ builtins.listToAttrs (
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.users."${host}" = (./. + "/${host}/home.nix");
+
         }
       ];
     };

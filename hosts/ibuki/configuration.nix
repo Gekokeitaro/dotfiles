@@ -1,18 +1,30 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.sops-nix.nixosModules.sops
+      inputs.hermes-agent.nixosModules.default
       ../../root-modules
     ];
 
-  #rootModules.niri.enable = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "ibuki"; # Define your hostname.
   networking.networkmanager.enable = true;
+
+  sops.defaultSopsFile = ../../secrets/common/system.yaml;
+  sops.age.keyFile = "/home/ibuki/.config/sops/age/key.txt";
+  sops.secrets.openrouter_api_key = {};
+
+  services.hermes-agent = {
+    enable = true;
+    settings.model.default = "openrouter/elephant-alpha";
+    environmentFiles = [ config.sops.secrets.openrouter_api_key.path ];
+    addToSystemPackages = true;
+  };
 
   time.timeZone = "Europe/Madrid";
   console.keyMap = "es";
@@ -41,10 +53,6 @@
   environment.etc."greetd/environments".text = ''
     sway
   '';
-  #powerManagement = {
-  #  enable = true;
-  #  powertop.enable = true;
-  #};
 	
   users.users.ibuki= {
     isNormalUser = true;

@@ -1,0 +1,7 @@
+keys:
+  - &ibuki age1n7f9ldphjqs0ylzw7ftag0pc988gd3jtneyejmjp8r0gcyuh3pmsr48rx2
+creation_rules:
+  - path_regex: secrets/common/system\.yaml
+    key_groups:
+      - age:
+        - *ibuki
