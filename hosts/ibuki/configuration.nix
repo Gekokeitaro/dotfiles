@@ -19,6 +19,7 @@
   rootModules.hermes-agent = {
     enable = true;
     defaultModel = "openrouter/elephant-alpha";
+    workspace = "/var/lib/hermes/workspace";
     environmentFiles = [ config.sops.secrets.openrouter_api_key.path ];
   };
 

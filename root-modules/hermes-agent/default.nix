@@ -17,6 +17,12 @@ in {
       description = "Default model to use with hermes-agent";
     };
 
+    workspace = mkOption {
+      type = types.str;
+      default = "/var/lib/hermes/workspace";
+      description = "Working directory (cwd) for the agent";
+    };
+
     environmentFiles = mkOption {
       type = types.listOf types.path;
       default = [];
@@ -28,6 +34,8 @@ in {
     services.hermes-agent = {
       enable = true;
       settings.model.default = cfg.defaultModel;
+      settings.cwd = cfg.workspace;
+      settings.allow_list = [ "*" ];
       environmentFiles = cfg.environmentFiles;
       addToSystemPackages = true;
     };
