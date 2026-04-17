@@ -7,7 +7,21 @@
       ../../root-modules
     ];
 
-  #rootModules.niri.enable = true;
+  rootModules.sops = {
+    enable = true;
+    defaultSopsFile = ../../secrets/common/system.yaml;
+    keyFile = "/home/ibuki/.config/sops/age/key.txt";
+    secrets = {
+      openrouter_api_key = {};
+    };
+  };
+  
+  rootModules.hermes-agent = {
+    enable = true;
+    defaultModel = "openrouter/elephant-alpha";
+    environmentFiles = [ config.sops.secrets.openrouter_api_key.path ];
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -41,10 +55,6 @@
   environment.etc."greetd/environments".text = ''
     sway
   '';
-  #powerManagement = {
-  #  enable = true;
-  #  powertop.enable = true;
-  #};
 	
   users.users.ibuki= {
     isNormalUser = true;
