@@ -1,30 +1,32 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.sops-nix.nixosModules.sops
-      inputs.hermes-agent.nixosModules.default
       ../../root-modules
     ];
+
+  rootModules.sops = {
+    enable = true;
+    defaultSopsFile = ../../secrets/common/system.yaml;
+    keyFile = "/home/ibuki/.config/sops/age/keys.txt";
+    secrets = {
+      openrouter_api_key = {};
+    };
+  };
+  
+  rootModules.hermes-agent = {
+    enable = true;
+    defaultModel = "openrouter/elephant-alpha";
+    environmentFiles = [ config.sops.secrets.openrouter_api_key.path ];
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "ibuki"; # Define your hostname.
   networking.networkmanager.enable = true;
-
-  sops.defaultSopsFile = ../../secrets/common/system.yaml;
-  sops.age.keyFile = "/home/ibuki/.config/sops/age/key.txt";
-  sops.secrets.openrouter_api_key = {};
-
-  services.hermes-agent = {
-    enable = true;
-    settings.model.default = "openrouter/elephant-alpha";
-    environmentFiles = [ config.sops.secrets.openrouter_api_key.path ];
-    addToSystemPackages = true;
-  };
 
   time.timeZone = "Europe/Madrid";
   console.keyMap = "es";
