@@ -11,16 +11,14 @@
     enable = true;
     defaultSopsFile = ../../secrets/common/system.yaml;
     keyFile = "/home/ibuki/.config/sops/age/keys.txt";
-    secrets = {
-      openrouter_api_key = {};
-    };
+    secrets."hermes-env" = { format = "yaml"; };
   };
   
   rootModules.hermes-agent = {
     enable = true;
     defaultModel = "openrouter/elephant-alpha";
     workspace = "/var/lib/hermes/workspace";
-    environmentFiles = [ config.sops.secrets.openrouter_api_key.path ];
+    environmentFiles = [ config.sops.secrets."hermes-env".path ];
   };
 
   boot.loader.systemd-boot.enable = true;
@@ -59,7 +57,7 @@
 	
   users.users.ibuki= {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "hermes" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
