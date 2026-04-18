@@ -8,7 +8,22 @@
       #../../containers/llama-swap.nix
     ];
 
+  rootModules.sops = {
+    enable = true;
+    defaultSopsFile = ../../secrets/common/system.yaml;
+    keyFile = "/home/nixmox/.config/sops/age/keys.txt";
+    secrets."hermes-env" = { format = "yaml"; };
+  };
+
+  rootModules.hermes-agent = {
+    enable = true;
+    defaultModel = "openrouter/elephant-alpha";
+    workspace = "/var/lib/hermes/workspace";
+    environmentFiles = [ config.sops.secrets."hermes-env".path ];
+  };
+
   rootModules.podman.enable = true;
+
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -33,7 +48,7 @@
   };
 
   services.displayManager.ly.enable = true;
-	
+
   users.users.nixmox= {
     isNormalUser = true;
     linger = true; # Alternativas?
@@ -47,7 +62,7 @@
     vim
     wget
   ];
-  
+
   fonts.packages = with pkgs; [
     nerd-fonts.fira-mono
   ];

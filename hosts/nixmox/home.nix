@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -10,6 +10,8 @@
   homeModules.nvf.enable = true;
   homeModules.podman.enable = true;
   containers.llama-swap.enable = true;
+  homeModules.opencode.enable = true;
+  homeModules.tmux.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -18,7 +20,10 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [];
+  home.packages = with pkgs; [
+    rclone
+    magic-wormhole
+  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -57,7 +62,8 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
+  programs.npm.enable = true; # TODO testing. Modularize later.
+
   programs.git = {
     enable = true;
     lfs.enable = true;
