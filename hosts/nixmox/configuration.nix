@@ -2,10 +2,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
       ../../root-modules
-      #../../containers/llama-swap.nix
     ];
 
   rootModules.sops = {
@@ -24,6 +23,7 @@
 
   rootModules.podman.enable = true;
 
+  programs.fuse.userAllowOther = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -31,7 +31,7 @@
   networking = {
     networkmanager.enable = true;
     hostName = "nixmox"; # Define your hostname.
-    firewall.allowedTCPPorts = [ 5001 8080 ];
+    firewall.allowedTCPPorts = [ 5001 8080 6333 6334 7474 7687 9621 ];
   };
 
   time.timeZone = "Europe/Madrid";

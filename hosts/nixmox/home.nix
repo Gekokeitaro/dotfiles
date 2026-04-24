@@ -1,15 +1,61 @@
-{ pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
     ../../modules
     inputs.nvf.homeManagerModules.default
     ../../containers/llama-swap.nix
+    ../../containers/qdrant.nix
+    ../../containers/neo4j.nix
+    ../../containers/lightrag.nix
   ];
 
   homeModules.nvf.enable = true;
   homeModules.podman.enable = true;
+
+  homeModules.sops = {
+    enable = true;
+    defaultSopsFile = ../../secrets/nixmox/user-secrets.yaml;
+    keyFile = "/home/nixmox/.config/sops/age/keys.txt";
+    secrets.rclone_pcloud_token = {};
+    secrets.neo4j_password = {};
+    templates."rclone.conf" = {
+      content = ''
+        [pcloud]
+        type = pcloud
+        hostname = eapi.pcloud.com
+        token = ${config.sops.placeholder.rclone_pcloud_token}
+      '';
+      path = "${config.home.homeDirectory}/.config/rclone/rclone.conf";
+    };
+  };
+
+  homeModules.rclone = {
+    enable = true;
+    configPath = "${config.home.homeDirectory}/.config/rclone/rclone.conf";
+    mountPoint = "calibre-zotero-shared/";
+    remotePath = "calibre-zotero-shared/";
+  };
+
   containers.llama-swap.enable = true;
+  containers.qdrant.enable = true;
+
+  containers.neo4j = {
+    enable = true;
+    password = "${config.sops.secrets.neo4j_password.path}";
+  };
+
+  containers.lightrag = {
+    enable = true;
+    neo4j-passwd = "8i8&t2s9D4EY";
+  };
+  # En home.file o en el módulo directamente
+  home.file.".local/share/lightrag/data/.env".text = ''
+    VECTOR_DB_STORAGE=qdrant
+    GRAPH_STORAGE=neo4j
+    QDRANT_COLLECTION_NAME=lightrag_collection
+  '';
+
   homeModules.opencode.enable = true;
   homeModules.tmux.enable = true;
 
@@ -68,7 +114,7 @@
     enable = true;
     lfs.enable = true;
   };
-  
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
