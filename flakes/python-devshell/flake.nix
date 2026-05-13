@@ -23,6 +23,17 @@
           default = pkgs.mkShell {
             name = "python-uv";
             packages = [ pkgs.uv ];
+            env = {
+              NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
+              NIX_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+                pkgs.stdenv.cc.cc
+                pkgs.zlib
+                pkgs.openssl
+                pkgs.blas
+                pkgs.lapack
+                pkgs.libgcc
+              ];
+            };
             shellHook = ''
               echo ""
               echo "🐍 Python + UV dev shell"
