@@ -16,8 +16,8 @@
   
   rootModules.hermes-agent = {
     enable = true;
-    defaultModel = "openrouter/elephant-alpha";
-    workspace = "/var/lib/hermes/workspace";
+    providerUrl = "http://192.168.18.108:8080/v1";
+    defaultModel = "gemma-4-E4B-it-qat-UD-Q4_K_XL";
     environmentFiles = [ config.sops.secrets."hermes-env".path ];
   };
 
@@ -32,17 +32,13 @@
   i18n.defaultLocale = "es_ES.UTF-8";
 
   services = {
-
     greetd = {
       enable = true;
       settings = {
-        default_session.command = ''
-          ${pkgs.tuigreet}/bin/tuigreet \
-          --time  \
-          --asterisks \
-          --user-menu \
-          --cmd sway
-        '';
+        default_session = {
+          command = "''${pkgs.tuigreet}/bin/tuigreet --time  --asterisks --user-menu --cmd sway";
+          user = "greeter";
+        };
       };
     };
 
@@ -70,6 +66,8 @@
     magic-wormhole
     fastfetch
     tealdeer
+    pi-coding-agent
+    tuigreet
   ];
   
   fonts.packages = with pkgs; [
