@@ -15,28 +15,22 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    crawl
-    crawlTiles
-    atuin
-    bulletty
-    glow
-    koreader
-    ripgrep
-    fzf
-    fd
-    btop
-    eza
-    bat
-    zoxide
-    impala
-    bluetui
-    yazi
-    lynx
-    nyxt
+    atuin # Replaces `history` with SQLite DB
+    ripgrep # Fast, improved grep
+    fzf # Fuzzyfinder
+    fd # fast alternative to find
+    btop # resource monitor
+    eza # Modern alternative to ls
+    bat # Color + Formatted cat
+    zoxide # Smart cd which learns
+    impala # TUI for managing wifi
+    bluetui # TUI for managing bluetooth
     swaybg # TODO: Unir a sway
     # linter
     vale
     vale-ls
+    qutebrowser
+    sxiv
   ];
 
   homeModules.opencode.enable = true;
@@ -61,6 +55,40 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    ".pi/agent/models.json".force = true;
+    ".pi/agent/models.json".text = ''
+      {
+        "providers": {
+          "llama-swap": {
+            "baseUrl": "http://192.168.18.108:8080/v1",
+            "api": "openai-completions",
+            "apiKey": "bleh",
+            "models": [
+              {
+                "id": "gemma-4-12B-it-qat-UD-Q4_K_XL",
+                "input": [ "text" ]
+              },
+              {
+                "id": "gemma-4-E4B-it-qat-UD-Q4_K_XL",
+                "input": [ "text" ]
+              },
+              {
+                "id": "LFM2.5-8B-A1B-UD-Q4_K_XL",
+                "input": [ "text" ]
+              },
+              {
+                "id": "gpt-oss-20b-Q4_K_M",
+                "input": [ "text" ]
+              },
+              {
+                "id": "Mellum2-12B-A2.5B-Instruct-Q4_K_M",
+                "input": [ "text" ]
+              }
+            ]
+          }
+        }
+      }
+    '';
   };
 
   home.sessionVariables = {
