@@ -12,15 +12,14 @@ in {
   options.rootModules.hermes-agent = {
     enable = mkEnableOption "enable hermes-agent root module";
 
+    providerUrl = mkOption {
+      type = types.str;
+      description = "Base URL for OpenAI-compatible custom provider";
+    };
+
     defaultModel = mkOption {
       type = types.str;
       description = "Default model to use with hermes-agent";
-    };
-
-    workspace = mkOption {
-      type = types.str;
-      default = "/var/lib/hermes/workspace";
-      description = "Working directory (cwd) for the agent";
     };
 
     environmentFiles = mkOption {
@@ -33,11 +32,14 @@ in {
   config = mkIf cfg.enable {
     services.hermes-agent = {
       enable = true;
-      settings.model.default = cfg.defaultModel;
-      settings.cwd = cfg.workspace;
-      settings.allow_list = [ "*" ];
-      environmentFiles = cfg.environmentFiles;
       addToSystemPackages = true;
+      environmentFiles = cfg.environmentFiles;
+
+      settings.model.provider = "custom";
+      settings.model.base_url= cfg.providerUrl;
+      settings.model.default = cfg.defaultModel;
+
+      settings.allow_list = [ "*" ];
     };
   };
 }
