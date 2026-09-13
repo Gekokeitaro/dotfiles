@@ -13,27 +13,23 @@ in {
     programs.opencode.enable = true;
     programs.opencode.settings = {
       default_agent = "plan";
+      plugin = [ "opencode-models-discovery" "@omniroute/opencode-plugin" "@vectorize-io/opencode-hindsight"];
       provider = {
+        omniroute = {
+          npm = "@ai-sdk/openai-compatible";
+          name = "omniroute (local)";
+          options = {
+            baseURL = "http://192.168.18.32:20128/v1";
+            apiKey = "sk-325a74ece6465768-baf160-daf9ba62";
+          };
+        };
         llama-swap = {
           npm = "@ai-sdk/openai-compatible";
           name = "llama-swap (local)";
           options = {
-            baseURL = "http://192.168.18.3:8080/v1";
+            baseURL = "http://192.168.18.12:8080/v1";
+            modelsDiscovery = { enabled = true; };
           };
-          models = {
-            "gpt-oss-20b-NEO-IQ4_NL" = {
-              name = "GPT OSS 20b NEO IQ4_NL";
-            };
-            "gpt-oss-20b-NEO-IQ4_NL:low" = {
-              name = "GPT OSS 20b NEO IQ4_NL (low)";
-            };
-            "gpt-oss-20b-NEO-IQ4_NL:high" = {
-              name = "GPT OSS 20b NEO IQ4_NL (high)";
-            };
-            "qwen3.5-9b-claude-4.6-uncensored-thinking" = {
-              name = "Qwen3.5 9b + Claude4.6 uncensored (thinking)";
-            };
-         };
         };
       };
     };
