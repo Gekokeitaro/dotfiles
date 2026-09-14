@@ -13,7 +13,14 @@ in {
     programs.opencode.enable = true;
     programs.opencode.settings = {
       default_agent = "plan";
-      plugin = [ "opencode-models-discovery" "@omniroute/opencode-plugin" "@vectorize-io/opencode-hindsight"];
+      plugin = [ 
+        #"opencode-models-discovery"
+        #"@omniroute/opencode-plugin"
+        #[ "@vectorize-io/opencode-hindsight" {
+        #  hindsightApiUrl = "http://192.168.18.19:8888";
+        #  bankId = "develop";
+        #}]
+      ];
       provider = {
         omniroute = {
           npm = "@ai-sdk/openai-compatible";
